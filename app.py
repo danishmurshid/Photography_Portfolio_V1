@@ -166,10 +166,18 @@ try:
         #MainMenu, footer, header {{
             visibility: hidden !important;
             display: non !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            height: 0 !important;
+            width: 0 !important;
         }}
         .stAppHeader, .stActionButton, div[data-testid="stStatusWidget"] {{
             display: none !important;
             visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            height: 0 !important;
+            width: 0 !important;
         }}
         </style>
     """, unsafe_allow_html=True)
