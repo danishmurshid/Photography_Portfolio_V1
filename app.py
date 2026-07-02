@@ -423,6 +423,7 @@ else:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
                     #st.video(file_path, format="video/mp4")
+                    mobile_friendly_path = f"{file_path}#t=0.001"
                     st.video(file_path, format="video/mp4", loop=False, autoplay=False, muted=True)
                     #--#
                 else:  
