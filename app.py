@@ -423,8 +423,34 @@ else:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
                     #st.video(file_path, format="video/mp4")
-                    mobile_friendly_path = f"{file_path}#t=0.001"
-                    st.video(file_path, format="video/mp4", loop=False, autoplay=False, muted=True)
+                    # 1. Read the local file directly from the GitHub repository server
+                    with open(file_path, "rb") as f:
+                        video_bytes = f.read()
+                    
+                    # 2. Encode the file into an inline data string
+                    import base64
+                    encoded_video = base64.b64encode(video_bytes).decode()
+                    
+                    # 3. Render a completely raw HTML5 video player 
+                    # 'preload="auto"' and '#t=0.1' inside the data stream forces mobile frames to render
+                    st.markdown(
+                        f"""
+                        <div style="margin-bottom: 20px; width: 100%;">
+                            <video 
+                                width="100%" 
+                                height="240" 
+                                controls 
+                                preload="auto" 
+                                playsinline
+                                style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background-color: #000; object-fit: cover;"
+                            >
+                                <source src="data:video/mp4;base64,{encoded_video}#t=0.1" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
                     #--#
                 else:  
                     try:
