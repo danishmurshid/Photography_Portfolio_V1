@@ -423,14 +423,7 @@ else:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
                     #st.video(file_path, format="video/mp4")
-                    st.video(
-                        file_path, 
-                        format="video/mp4", 
-                        loop=False, 
-                        autoplay=False, 
-                        muted=True,
-                        poster="cover.jpeg"
-                    )
+                    st.video(file_path, format="video/mp4")
                     #--#
                 else:  
                     try:
