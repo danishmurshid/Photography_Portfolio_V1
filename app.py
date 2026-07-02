@@ -145,6 +145,14 @@ try:
             color: purple;
             border-color: #904bff;      /* #FF4B4B */
         }}
+
+        /* 4. REMOVE STREAMLIT TABS, MENUS, HEADERS, AND BADGES COMPLETELY */
+        #MainMenu, footer, header {{
+            visibility: hidden !important;
+        }}
+        .stAppHeader, .stActionButton, div[data-testid="stStatusWidget"] {{
+            display: none !important;
+        }}
     
         /* RESPONSIVE LAYOUT OVERRIDES (Mobile Devices smaller than 768px) */ 
         @media (max-width: 768px) {{
@@ -413,7 +421,15 @@ else:
 
             with col:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
-                    st.video(file_path, format="video/mp4")
+                    #--#
+                    #st.video(file_path, format="video/mp4")
+                    # Read the local file from disk and pass it directly into the native video framework
+                    with open(file_path, "rb") as video_file:
+                        video_bytes = video_file.read()
+                    
+                    # We stream the actual bytes natively so the phone loads the first frame instantly
+                    st.video(video_bytes, format="video/mp4", start_time=0)
+                    #--#
                 else:  
                     try:
                         img = Image.open(file_path)
