@@ -423,23 +423,13 @@ else:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
                     #st.video(file_path, format="video/mp4")
-                    st.markdown(
-                        f"""
-                        <div style="margin-bottom: 20px; width: 100%;">
-                            <video 
-                                width="100%" 
-                                height="240" 
-                                controls 
-                                preload="metadata" 
-                                playsinline
-                                style="border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background-color: #000; object-fit: cover;"
-                            >
-                                <source src="app/static/{file_path}#t=0.1" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
+                    st.video(
+                        file_path, 
+                        format="video/mp4", 
+                        loop=False, 
+                        autoplay=False, 
+                        muted=True,
+                        poster="cover.jpeg"
                     )
                     #--#
                 else:  
