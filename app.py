@@ -422,7 +422,13 @@ else:
             with col:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
-                    st.video(file_path, format="video/mp4")
+                    #st.video(file_path, format="video/mp4")
+                    # Read the local file from disk and pass it directly into the native video framework
+                    with open(file_path, "rb") as video_file:
+                        video_bytes = video_file.read()
+                    
+                    # We stream the actual bytes natively so the phone loads the first frame instantly
+                    st.video(video_bytes, format="video/mp4", start_time=0)
                     #--#
                 else:  
                     try:
