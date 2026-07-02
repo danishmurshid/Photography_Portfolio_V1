@@ -166,18 +166,10 @@ try:
         #MainMenu, footer, header {{
             visibility: hidden !important;
             display: non !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-            height: 0 !important;
-            width: 0 !important;
         }}
         .stAppHeader, .stActionButton, div[data-testid="stStatusWidget"] {{
             display: none !important;
             visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-            height: 0 !important;
-            width: 0 !important;
         }}
         </style>
     """, unsafe_allow_html=True)
@@ -431,14 +423,7 @@ else:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
                     #st.video(file_path, format="video/mp4")
-                    # 1. Read the local video file bytes
-                    with open(file_path, "rb") as video_file:
-                        video_bytes = video_file.read()
-                    
-                    # 2. Use Streamlit's native video player with an explicit layout container
-                    # We add a clear text caption right above it to ensure mobile responsiveness
-                    st.video(video_bytes, format="video/mp4", start_time=0)
-                    st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
+                    st.video(file_path, format="video/mp4", loop=False, autoplay=False, muted=True)
                     #--#
                 else:  
                     try:
