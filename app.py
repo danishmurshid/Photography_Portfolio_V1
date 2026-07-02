@@ -147,12 +147,16 @@ try:
         }}
 
         /* 4. REMOVE STREAMLIT TABS, MENUS, HEADERS, AND BADGES COMPLETELY */
-        #MainMenu, footer, header {{
-            visibility: hidden !important;
-        }}
-        .stAppHeader, .stActionButton, div[data-testid="stStatusWidget"] {{
+        header, .stAppHeader, .stActionButton, div[data-testid="stStatusWidget"] {
             display: none !important;
-        }}
+            visibility: hidden !important;
+        }
+
+        /* 2. COMPLETELY REMOVE THE BOTTOM RIGHT STREAMLIT/GITHUB TOOLBAR TABS */
+        footer, #MainMenu, [data-testid="stManageAppButton"], [data-testid="stToolbar"] {
+            display: none !important;
+            visibility: hidden !important;
+        }
     
         /* RESPONSIVE LAYOUT OVERRIDES (Mobile Devices smaller than 768px) */ 
         @media (max-width: 768px) {{
