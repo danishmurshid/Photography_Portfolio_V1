@@ -423,12 +423,14 @@ else:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
                     #st.video(file_path, format="video/mp4")
-                    # Read the local file from disk and pass it directly into the native video framework
+                    # 1. Read the local video file bytes
                     with open(file_path, "rb") as video_file:
                         video_bytes = video_file.read()
                     
-                    # We stream the actual bytes natively so the phone loads the first frame instantly
+                    # 2. Use Streamlit's native video player with an explicit layout container
+                    # We add a clear text caption right above it to ensure mobile responsiveness
                     st.video(video_bytes, format="video/mp4", start_time=0)
+                    st.markdown("<div style='margin-bottom: 20px;'></div>", unsafe_allow_html=True)
                     #--#
                 else:  
                     try:
