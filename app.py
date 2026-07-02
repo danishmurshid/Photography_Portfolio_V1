@@ -422,7 +422,6 @@ else:
             with col:
                 if file_name.lower().endswith(('.mp4', '.mov', '.webm')):
                     #--#
-                    #st.video(file_path, format="video/mp4")
                     st.video(file_path, format="video/mp4")
                     #--#
                 else:  
